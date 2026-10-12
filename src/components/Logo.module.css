@@ -1,0 +1,57 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(150deg, var(--cyan), #2f9f95);
+  color: #06241f;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.35rem;
+  display: grid;
+  place-items: center;
+  position: relative;
+  flex: none;
+  box-shadow: 0 8px 22px -10px rgba(101, 230, 213, 0.8);
+}
+
+.icon span {
+  position: absolute;
+  top: -4px;
+  right: -5px;
+  font-size: 0.7rem;
+  color: var(--amber);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.05rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wordmark small {
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.3em;
+  color: var(--cyan);
+}
+
+.large .icon {
+  width: 52px;
+  height: 52px;
+  font-size: 1.8rem;
+}
+
+.large .wordmark {
+  font-size: 1.4rem;
+}

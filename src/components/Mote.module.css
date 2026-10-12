@@ -1,0 +1,40 @@
+/* Original Mote illustrations: idle breathing, walk cycle, ability cast. */
+
+.mote {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+/* Idle: a slow breath, so a standing Mote never looks like a static image. */
+.body {
+  transform-origin: 120px 220px;
+  animation: bob 3.4s var(--ease) infinite;
+}
+
+/* Each Mote breathes at its own tempo, which reads as personality. */
+.pip .body {
+  animation-duration: 2.4s;
+}
+.glitch .body {
+  animation-duration: 3s;
+}
+.moss .body {
+  animation-duration: 4.2s;
+}
+
+.eyes {
+  transform-origin: 120px 129px;
+  animation: blink 5.5s steps(1, end) infinite;
+}
+
+/* Movement animation, used by the crew preview and victory cosmetics. */
+.moving .body {
+  animation: walk 0.52s var(--ease) infinite;
+}
+
+/* Ability cast animation. */
+.casting .body {
+  animation: cast 0.9s var(--ease);
+}

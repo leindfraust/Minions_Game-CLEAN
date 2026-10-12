@@ -1,0 +1,120 @@
+.controls {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(0.8rem, 3vw, 1.6rem);
+  padding-bottom: max(clamp(0.8rem, 3vw, 1.6rem), env(safe-area-inset-bottom));
+  /* The bar itself must not swallow taps meant for the canvas. */
+  pointer-events: none;
+  z-index: 20;
+}
+
+.controls > * {
+  pointer-events: auto;
+}
+
+/* --- joystick ----------------------------------------------------------- */
+
+.joystick {
+  position: relative;
+  width: clamp(96px, 26vw, 132px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(14, 23, 37, 0.6);
+  border: 2px solid rgba(101, 230, 213, 0.32);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  /* Stop the browser from scrolling, panning or zooming from this element. */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.joystickActive {
+  border-color: var(--cyan);
+  box-shadow: 0 0 24px -6px rgba(101, 230, 213, 0.7);
+}
+
+.knob {
+  width: 42%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(101, 230, 213, 0.42);
+  border: 1px solid rgba(174, 239, 211, 0.7);
+  /* Transform is set inline from the pointer position. */
+  transition: transform 60ms linear;
+  pointer-events: none;
+}
+
+.joystickHint {
+  position: absolute;
+  bottom: -1.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* --- action buttons ----------------------------------------------------- */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 0.9rem);
+}
+
+.action {
+  width: clamp(58px, 15vw, 72px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 0;
+  flex-direction: column;
+  gap: 0;
+  font-size: 1.15rem;
+  background: rgba(20, 33, 48, 0.78);
+  border: 1px solid var(--line-bright);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.action span {
+  font-family: var(--font-mono);
+  font-size: 0.46rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.abilityAction {
+  background: color-mix(in srgb, var(--mote-color, var(--cyan)) 26%, rgba(20, 33, 48, 0.8));
+  border-color: color-mix(in srgb, var(--mote-color, var(--cyan)) 55%, transparent);
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+}
+
+.abilityAction:disabled {
+  opacity: 0.55;
+}
+
+.abilityCharge {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--mote-color, var(--cyan));
+  transition: width 120ms linear;
+}

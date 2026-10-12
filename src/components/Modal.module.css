@@ -1,0 +1,89 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(4, 8, 15, 0.76);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  animation: appear var(--fast) var(--ease);
+  overflow-y: auto;
+}
+
+.modal {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: min(86vh, 900px);
+  overflow-y: auto;
+  background:
+    linear-gradient(180deg, rgba(101, 230, 213, 0.07), transparent 34%),
+    var(--panel);
+  border: 1px solid var(--line-bright);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-raised);
+  padding: 1.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  animation: appear var(--normal) var(--ease);
+  /* Keep modal content from being obscured by a phone's rounded corners. */
+  padding-bottom: max(1.9rem, env(safe-area-inset-bottom));
+}
+
+.modal:focus {
+  outline: none;
+}
+
+.wide {
+  width: min(720px, 100%);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  padding-right: 2.6rem;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  line-height: 1;
+  background: #0e1725;
+}
+
+/* Action row pinned to the bottom of a dialog. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+
+.primary {
+  background: linear-gradient(135deg, var(--cyan), #37b7a8);
+  color: #04231f;
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7cf3e2, #3fc7b6);
+  box-shadow: var(--glow-cyan);
+}
+
+@media (max-width: 560px) {
+  .modal {
+    padding: 1.4rem;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+}

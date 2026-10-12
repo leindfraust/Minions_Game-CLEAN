@@ -1,0 +1,108 @@
+.screen {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: clamp(0.5rem, 1.6vw, 1rem);
+  padding-bottom: max(clamp(0.5rem, 1.6vw, 1rem), env(safe-area-inset-bottom));
+  overflow: hidden;
+}
+
+/*
+  Gestures are suppressed on the gameplay screen only. Menu routes are
+  untouched, so ordinary pages keep normal scrolling and zooming.
+*/
+.screen {
+  overscroll-behavior: none;
+}
+
+.footerBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.35rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex: none;
+}
+
+.footerBar span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.live {
+  margin-left: auto;
+}
+
+.live b {
+  color: var(--cyan);
+}
+
+/* Keyboard legend is pointless on a touch-only device. */
+.touch .footerBar {
+  display: none;
+}
+
+/* --- rotation prompt ---------------------------------------------------- */
+
+.rotate {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+  background: var(--ink);
+}
+
+.rotateIcon {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+  background: rgba(101, 230, 213, 0.12);
+  border: 1px solid rgba(101, 230, 213, 0.35);
+  color: var(--cyan);
+  animation: rotateHint 2.4s var(--ease) infinite;
+}
+
+@keyframes rotateHint {
+  0%,
+  45%,
+  100% {
+    transform: rotate(0deg);
+  }
+  60%,
+  85% {
+    transform: rotate(90deg);
+  }
+}
+
+.rotate h2 {
+  font-size: 1.8rem;
+}
+
+.rotate p {
+  max-width: 34ch;
+  font-size: 0.9rem;
+}
+
+@media (orientation: landscape) and (max-height: 560px) {
+  .screen {
+    gap: 0.35rem;
+    padding: 0.35rem;
+  }
+}

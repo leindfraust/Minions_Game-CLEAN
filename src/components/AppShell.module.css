@@ -1,0 +1,224 @@
+.shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- header ------------------------------------------------------------- */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 0.85rem clamp(1rem, 4vw, 2.6rem);
+  background: rgba(9, 14, 23, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  gap: 0.3rem;
+  margin-left: 0.6rem;
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition:
+    color var(--fast) var(--ease),
+    background var(--fast) var(--ease);
+}
+
+.navLink:hover {
+  color: var(--text);
+  background: #16202f;
+}
+
+.navLink span {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.navActive {
+  color: var(--text);
+  background: #16202f;
+  border-color: var(--line-bright);
+}
+
+.navActive::after {
+  content: "";
+  position: absolute;
+  bottom: -0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+.headerRight {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.balance {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: rgba(101, 230, 213, 0.1);
+  border: 1px solid rgba(101, 230, 213, 0.28);
+  color: var(--mint);
+  font-size: 0.82rem;
+}
+
+.balance b {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.iconButton {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  flex: none;
+  font-size: 0.95rem;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  background: linear-gradient(140deg, var(--violet), #6c56b8);
+  border-color: transparent;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  position: relative;
+  flex: none;
+}
+
+.avatar i {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 2px solid var(--ink);
+}
+
+/* --- content ------------------------------------------------------------ */
+
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(1.2rem, 3vw, 2.4rem) clamp(1rem, 4vw, 2.6rem) 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.4rem, 3vw, 2.4rem);
+  animation: appear var(--slow) var(--ease);
+}
+
+/* --- footer ------------------------------------------------------------- */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.1rem clamp(1rem, 4vw, 2.6rem);
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footerActions {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footerActions button {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 0.4rem 0.8rem;
+}
+
+.version i {
+  font-style: normal;
+  color: var(--cyan);
+}
+
+/* --- responsive --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .header {
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  .nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+    /* Only the nav strip scrolls; the page itself never scrolls sideways. */
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+  .navActive::after {
+    display: none;
+  }
+  .headerRight {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .navLink {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.8rem;
+  }
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footerActions {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,346 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.heading h1 {
+  font-size: clamp(2.1rem, 5vw, 3.3rem);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.95fr);
+  gap: 1.2rem;
+  align-items: start;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(238px, 1fr));
+  gap: 0.9rem;
+}
+
+/* --- character card ----------------------------------------------------- */
+
+.card {
+  --mote-color: var(--cyan);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: stretch;
+  text-align: left;
+  padding: 1.1rem;
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    color-mix(in srgb, var(--mote-color) 16%, transparent),
+    transparent 58%
+  );
+  opacity: 0;
+  transition: opacity var(--normal) var(--ease);
+  pointer-events: none;
+}
+
+.card:hover:not(:disabled) {
+  border-color: var(--mote-color);
+  transform: translateY(-3px);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.cardSelected {
+  border-color: var(--mote-color);
+  box-shadow: 0 0 0 1px var(--mote-color), 0 20px 44px -24px var(--mote-color);
+}
+
+.cardSelected::before {
+  opacity: 1;
+}
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.cardTop h2 {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.cardTop small {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mote-color);
+}
+
+.selectState {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  padding-top: 0.3rem;
+}
+
+.cardSelected .selectState {
+  color: var(--mote-color);
+}
+
+.portrait {
+  height: 168px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(
+      ellipse at 50% 104%,
+      color-mix(in srgb, var(--mote-color) 28%, transparent),
+      transparent 66%
+    ),
+    #0e1725;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.portrait svg {
+  width: 128px;
+  height: auto;
+}
+
+.personality {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* --- statistics --------------------------------------------------------- */
+
+.stats {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.stat {
+  display: grid;
+  grid-template-columns: 4.2rem 1fr auto;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.statBar {
+  height: 5px;
+  border-radius: 3px;
+  background: #0b1420;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.statBar i {
+  display: block;
+  height: 100%;
+  background: var(--mote-color);
+  border-radius: 3px;
+}
+
+.statValue {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text);
+}
+
+/* --- ability block ------------------------------------------------------ */
+
+.ability {
+  background: #0e1725;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--mote-color);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+}
+
+.abilityName {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--mote-color);
+}
+
+.cooldown {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.ability p {
+  font-size: 0.76rem;
+  margin-top: 0.2rem;
+}
+
+/* --- preview aside ------------------------------------------------------ */
+
+.preview {
+  --mote-color: var(--cyan);
+  position: sticky;
+  top: 5.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--mote-color) 10%, transparent), transparent 38%),
+    var(--panel);
+  border: 1px solid var(--line-bright);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  box-shadow: var(--shadow-panel);
+}
+
+.previewStage {
+  width: 100%;
+  height: 232px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius);
+  background: radial-gradient(
+      ellipse at 50% 100%,
+      color-mix(in srgb, var(--mote-color) 30%, transparent),
+      transparent 64%
+    ),
+    #0d1522;
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.previewStage svg {
+  width: 172px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Ability ring that fires during the cast preview. */
+.previewRing {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 90px;
+  height: 90px;
+  margin: -45px 0 0 -45px;
+  border-radius: 50%;
+  border: 3px solid var(--mote-color);
+  opacity: 0;
+}
+
+.previewRingActive {
+  animation: castRing 0.9s var(--ease);
+}
+
+@keyframes castRing {
+  from {
+    transform: scale(0.35);
+    opacity: 0.95;
+  }
+  to {
+    transform: scale(2.3);
+    opacity: 0;
+  }
+}
+
+.previewName {
+  font-size: 1.7rem;
+}
+
+.previewRole {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mote-color);
+}
+
+.previewActions {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.previewActions button {
+  font-size: 0.78rem;
+  padding: 0.5rem 0.9rem;
+}
+
+.previewNote {
+  font-size: 0.8rem;
+}
+
+.startButton {
+  width: 100%;
+  margin-top: 0.3rem;
+  background: linear-gradient(135deg, var(--cyan), #37b7a8);
+  color: #04231f;
+  border-color: transparent;
+  font-weight: 800;
+  font-size: 0.94rem;
+  padding: 0.85rem 1.4rem;
+  box-shadow: 0 14px 34px -16px rgba(101, 230, 213, 0.9);
+}
+
+.startButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7cf3e2, #3fc7b6);
+}
+
+.startMeta {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .preview {
+    position: static;
+    order: -1;
+  }
+  .previewStage {
+    height: 200px;
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .portrait {
+    height: 150px;
+  }
+}
